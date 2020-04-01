@@ -1,0 +1,23 @@
+<!doctype html>
+    <title>Upload new File</title>
+    <h1>Upload new File</h1>
+    <form method=post enctype=multipart/form-data>
+    <input type=file name=file>
+    <input type=submit value=Upload>
+</form>
+<table style="width:100%; margin-top: 50px;">
+    <tr>
+        <th style="width:33%">Input<th>
+        <th style="width:33%;">Output<th>
+        <th style="width:33%">Data<th>
+        <th style="width:33%">Data<th>
+        <th style="width:33%">Data<th>
+    </tr>
+    {% for value in files %}
+       <tr class="spacer">
+            <td><a target="_blank" href="{{ url_for('static', filename=value) }}"><img class="img" style="max-width:400px; max-height: 200px;" src="{{ url_for('static', filename=value) }}"></a><td>
+            <td><a target="_blank" href="{{ url_for('static', filename='result/'+value) }}"><img class="img" style="max-width:400px; max-height: 200px;" src="{{ url_for('static', filename='result/'+value) }}"></a><td>
+            <td>{{data[value.rsplit('.', 1)[0]+'.txt']|safe}}<td>
+       </tr>
+    {% endfor %}
+ </table>
